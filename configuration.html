@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:title" content="Warden Hosting | Configuration" />
+    <meta property="og:description" content="The Best New Clouds Server Hosting!" />
+    <meta property="og:image" content="../img/logo.png" />
+    <meta property="og:url" content="https://www.wardenhost.site/configuration" />
+    <meta property="og:type" content="website" />
+
+    <title>Warden Hosting | Configuration</title>
+    <link rel="icon" type="image/x-icon" href="../img/logo.png">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/configuration.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <nav class="fixed top-0 left-0 w-full bg-gray-800/90 backdrop-blur-md z-50 shadow-lg transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between flex-wrap">
+            <!-- Logo (Left) -->
+            <div class="order-1">
+                <a href="../#">
+                    <img 
+                        src="../img/logo.png"
+                        alt="WardenHosting Logo"
+                        class="h-12 md:h-16 object-contain filter drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+                    >
+                </a>
+            </div>
+
+            <!-- Hamburger Button (Centered on Mobile) -->
+            <div class="flex justify-center order-2 md:hidden">
+                <button id="menu-toggle" class="text-neon-green focus:outline-none" aria-label="Toggle menu">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+
+            <!-- Menu Links (Left) -->
+            <div id="menu" class="hidden w-full md:flex md:items-center md:w-auto order-3">
+                <div class="flex flex-col md:flex-row md:space-x-6 pt-4 md:pt-0 bg-gray-800/95 md:bg-transparent">
+                    <!-- Home -->
+                    <a style="font-weight: 600;" href="../#" class="block py-2 md:py-0 text-gray-300 hover:text-blue-400 transition-colors">Home</a>
+                    <!-- List (Dropdown) -->
+                    <div class="relative group">
+                        <button style="font-weight: 600;" class="block py-2 md:py-0 text-gray-300 hover:text-blue-400 transition-colors flex items-center">
+                            Services 
+                            <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
+                        </button>
+                        <div class="dropdown absolute left-0 w-48 bg-gray-800 rounded-md shadow-lg z-10">
+                            <a style="font-weight: 600;" href="#minecraft-budget" class="block px-4 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-700 rounded-t-md">Minecraft Budget</a>
+                            <a style="font-weight: 600;" href="#minecraft-premium" class="block px-4 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-700">Minecraft Premium</a>
+                            <a style="font-weight: 600;" href="#discord-bot" class="block px-4 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-700">DiscordBot</a>
+                            <a style="font-weight: 600;" href="#game-servers" class="block px-4 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-700 rounded-b-md">Game Servers</a>
+                        </div>
+                    </div>
+                    <!-- About Us -->
+                    <a style="font-weight: 600;" href="#about" class="block py-2 md:py-0 text-gray-300 hover:text-blue-400 transition-colors">About us</a>
+                    <!-- Status -->
+                    <a style="font-weight: 600;" href="#status" class="block py-2 md:py-0 text-gray-300 hover:text-blue-400 transition-colors">Status</a>
+                </div>
+            </div>
+
+            <!-- Right Menu (Billing, Panel, Ping) -->
+            <div class="hidden md:flex items-center space-x-6 order-4">
+                <a style="font-weight: 600;" href="../billing.html" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Billing</a>
+                <a style="font-weight: 600;" href="https://game.wardenhost.site" class="text-gray-300 hover:text-blue-400 transition-colors">Panel</a>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (includes all items) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800/95 w-full px-4 pt-4 pb-6">
+            <a style="font-weight: 600;" href="../#" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Home</a>
+            <div class="relative">
+                <button style="font-weight: 600;" id="dropdown-toggle" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors flex items-center">
+                    List
+                    <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
+                </button>
+                <div id="mobile-dropdown" class="hidden pl-4">
+                    <a style="font-weight: 600;" href="#minecraft-budget" class="block py-2 text-gray-300 hover:text-blue-400">Minecraft Budget</a>
+                    <a style="font-weight: 600;" href="#minecraft-premium" class="block py-2 text-gray-300 hover:text-blue-400">Minecraft Premium</a>
+                    <a style="font-weight: 600;" href="#discord-bot" class="block py-2 text-gray-300 hover:text-blue-400">DiscordBot</a>
+                    <a style="font-weight: 600;" href="#game-servers" class="block py-2 text-gray-300 hover:text-blue-400">Game Servers</a>
+                </div>
+            </div>
+            <a style="font-weight: 600;" href="#about" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">About us</a>
+            <a style="font-weight: 600;" href="#status" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Status</a>
+            <a style="font-weight: 600;" href="../billing.html" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Billing</a>
+            <a style="font-weight: 600;" href="https://game.wardenhost.site" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Panel</a>
+        </div>
+    </nav>
+
+    <br><br><br>
+    <br><br><br>
+    <div class="form">
+        <div>
+            <form id="productcart" enctype="multipart/form-data">
+                <div class="form-gp">
+                    <h3>Your Information</h3>
+                    <p style="font-size: 11px; margin: 5px;">• If you do not have a panel, you can register by filling out the fields and clicking 'check' to register!<br> 
+                       • If you want to buy and already have a panel, you only need to fill out the fields without checking any boxes.</p>
+                    <br>
+                    <div>
+                        <input type="email" id="email" name="email" placeholder="Panel Email *">
+                        <input type="password" id="password" name="password" placeholder="Panel Password *">
+                        <input type="text" id="dcname" name="dcname" placeholder="Discord Username">
+                    </div>
+                    <p>Fields marked with asterisk (*) are required</p>
+                </div>
+                
+                <div class="form-gp">
+                    <h2>Product Configuration</h2>
+                    <br>
+                    <div class="configuration">
+                        <h4>Server Name *</h4>
+                        <input type="text" id="servername" name="servername" maxlength="12">
+                        <br>
+                        <div id="hr"></div>
+                        <br>
+                        <br>
+                        <h4>Node Type *</h4>
+                        <select id="nodetype" name="nodetype">
+                            <option id="NodeNone" value="">Select Node *</option>
+                            <option value="Budget">Budget</option>
+                            <option value="Premium">Premium</option>
+                        </select>
+                        <br>
+                        <div id="hr"></div>
+                        <br>
+                        <br>
+                        <h4>Plan Type *</h4>
+                        <select id="plan" name="plan" disabled>
+                        </select>
+                        <br>
+                        <div id="hr"></div>
+                        <br>
+                        <br>
+                        <h4>Location *</h4>
+                        <select id="location" name="location">
+                            <option value="Singapore">Singapore</option>
+                            <option value="India" disabled>India (Out Stock)</option>
+                            <option value="Vietnam" disabled>Vietnam (Out Stock)</option>
+                        </select>
+                        <br>
+                        <div id="hr"></div>
+                        <br>
+                        <br>
+                        <h4>Dedicated IP</h4>
+                        <h5 style="font-weight: 400;">Ordering this will provide port 25565 and/or 19132 to your server. Upon purchase, open a live chat request to apply your dedicated IP!</h5>
+                        <div class="dedicated">
+                            <input type="checkbox" id="dedicatedip">
+                            <h5 style="font-weight: 400;">19132 / 25565 Port | $4.00 USD Monthly</h5>
+                        </div>
+                        <br>
+                        <div id="hr"></div>
+                        <br>
+                        <br>
+                        <h4>Game Type *</h4>
+                        <select id="gametype" name="gametype">
+                            <option id="noneGame" value="None">Select Game *</option>
+                            <option value="Minecraft Java">Minecraft Java</option>
+                            <option value="Minecraft Bedrock">Minecraft Bedrock</option>
+                            <option value="Minecraft Modded">Minecraft Modded</option>
+                            <option value="Proxy Server">Proxy Server</option>
+                        </select>
+                        <br>
+                        <div id="hr"></div>
+                        <br>
+                        <br>
+                        <h4>Software *</h4>
+                        <select id="software" name="software" disabled>
+                        </select>
+                        <br>
+                        <div id="hr"></div>
+                        <br>
+                        <br>
+                        <p style="text-align: center;">Fields marked with asterisk (*) are required</p>
+                    </div>
+                </div>
+
+                <div class="form-gp">
+                    <h2>Setup Addons</h2>
+                    <br><br>
+                    <div id="addons-list">
+                        <div id="addons">
+                            <div style="display: flex; gap: 10px;">
+                                <input type="checkbox" id="proxy">
+                                <h5 style="font-weight: 500;">Proxy setup</h5>
+                            </div>
+                            <p style="font-weight: 400; font-size: 12px;">We will set up proxy software (Waterdog, Waterfall, BungeeCord, Velocity, etc.) for you! You can have us configure up to five backend servers. We’ll even fix any errors we make for up to 15 days after the initial installation!</p>
+                            <p style="font-weight: 500; font-size: 14px;">Important - Upon purchase, please open a live chat to get your addon setup/used.</p>
+                            <h5 style="font-weight: 500; font-size: 14px;">$10.00 USD Once</h5>
+                        </div>
+                        <div id="addons">
+                            <div style="display: flex; gap: 10px;">
+                                <input type="checkbox" id="geyser">
+                                <h5 style="font-weight: 500;">GeyserMC setup</h5>
+                            </div>
+                            <p style="font-weight: 400; font-size: 12px;">We will set up GeyserMC for you! You can have us configure up to five backend servers. We’ll even fix any errors we make for up to 7 days after the initial installation!</p>
+                            <p style="font-weight: 500; font-size: 14px;">Important - Upon purchase, please open a live chat to get your addon setup/used.</p>
+                            <h5 style="font-weight: 500; font-size: 14px;">$5.00 USD Once</h5>
+                        </div>
+                    </div>
+                </div>
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <br><br>
+                        <h2>Payments Form</h2>
+                        <br>
+                        <p>Q: How to pay?</p>
+                        <p>A: Scan KHQR below and screenshot the receipt to upload into the Receipt File and click "Submit"!</p>
+                        <br>
+                        <div><span id="total-price">$ 0.00 USD</span></div>
+                        <br><br>
+                        <div class="image-container">
+                            <img src="../img/qr.png" id="zoomable-image">
+                        </div>
+                        <br>
+                        <p>Scan to pay</p>
+                        <p>or</p>
+                        <a id="download" href="../img/qr.png" download>Download QR Code <i class="ri-download-line"></i></a>
+                        <br><br><br>
+                        <div class="upload-container" id="upload-container">
+                            <p>Drop file here or click to upload</p>
+                            <button type="button" id="upload-btn">Choose File</button>
+                            <input type="file" id="image" name="image" accept="image/*" style="display: none;">
+                        </div>
+                        <br>
+                        <img id="image-preview" style="display: none; max-width: 300px; margin-top: 10px; border-radius: 5px;" />
+                        <br>
+                        <input type="submit" value="Submit" id="submit">
+                        <br>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="cart-summary">
+            <h3>Cart Summary</h3>
+            <br>
+            <div id="cart-details">
+                <p><span id="summary-nodetype">Node:</span></p>
+                <p><span id="summary-servertype">Plan:</span></p>
+                <br>
+                <div id="hr"></div>
+                <br>
+                <p><span id="summary-dedicatedip"></span></p>
+                <p><span id="summary-proxysetup"></span></p>
+                <p><span id="summary-geysersetup"></span></p>
+                <br>
+                <div id="hr"></div>
+            </div>
+            <br>
+            <div id="total">
+                <p>CART SUBTOTAL TODAY:</p>
+                <h2><span id="summary-total">$ 0.00 USD</span></h2>
+            </div>
+            <br><br>
+            <div id="button-continue">
+                <button id="continue" onclick="payments()">
+                    <span>Continue</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <footer style="background-color: #1a1a1a; color: #ffffff; padding: 40px 20px; font-family: sans-serif; text-align: center;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
+                <!-- Company Info -->
+                <div style="flex: 1; min-width: 200px;">
+                    <h3 style="font-size: 18px; margin-bottom: 15px;">WardenHosting</h3>
+                    <p style="font-size: 14px; line-height: 1.6;">
+                        Secure and reliable web hosting solutions for businesses of all sizes. 
+                        Uptime guaranteed, 24/7 support.
+                    </p>
+                </div>
+    
+                <!-- Quick Links -->
+                <div style="flex: 1; min-width: 150px;">
+                    <h3 style="font-size: 18px; margin-bottom: 15px;">Quick Links</h3>
+                    <ul style="list-style: none; padding: 0; font-size: 14px;">
+                        <li><a href="/about" style="color: #cccccc; text-decoration: none;">About Us</a></li>
+                        <li><a href="/services" style="color: #cccccc; text-decoration: none;">Services</a></li>
+                        <li><a href="../#cate" style="color: #cccccc; text-decoration: none;">Pricing</a></li>
+                        <li><a href="/contact" style="color: #cccccc; text-decoration: none;">Contact</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Contact Info -->
+                <div style="flex: 1; min-width: 200px;">
+                    <h3 style="font-size: 18px; margin-bottom: 15px;">Contact Us</h3>
+                    <p style="font-size: 14px; line-height: 1.6;">
+                        Email: thyreahx@gmail.com<br>
+                        Phone: +855 93 237 359<br>
+                        Address: Phnom Penh City
+                    </p>
+                </div>
+    
+                <!-- Social Media -->
+                <div style="flex: 1; min-width: 150px;">
+                    <h3 style="font-size: 18px; margin-bottom: 15px;">Follow Us</h3>
+                    <div style="display: flex; gap: 15px; justify-content: center;">
+                        <a href="https://discord.gg/z6K9PQFN9N" style="color: #cccccc; text-decoration: none;">
+                            <i class="fa-brands fa-discord" style="font-size: 20px;"></i>
+                        </a>
+                        <a href="#soon" style="color: #cccccc; text-decoration: none;">
+                            <i class="fa-brands fa-youtube" style="font-size: 20px;"></i>
+                        </a>
+                        <a href="#soon" style="color: #cccccc; text-decoration: none;">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Bottom Bar -->
+            <div style="border-top: 1px solid #333; margin-top: 30px; padding-top: 20px; font-size: 14px;">
+                <p>© 2025 WardenHosting. All rights reserved. 
+                    <a href="/privacy" style="color: #cccccc; text-decoration: none;">Privacy Policy</a> | 
+                    <a href="/terms" style="color: #cccccc; text-decoration: none;">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/9fbc0d899d.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../js/configuration.js"></script>
+    <script>
+        const uploadContainer = document.getElementById('upload-container');
+        const fileInput = document.getElementById('image');
+        const uploadBtn = document.getElementById('upload-btn');
+        const imagePreview = document.getElementById('image-preview');
+
+        // Handle button click to trigger file input
+        uploadBtn.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        // Handle file input change event (when a file is selected)
+        fileInput.addEventListener('change', () => {
+            const file = fileInput.files[0];
+            if (file) {
+                showImagePreview(file);
+            }
+        });
+
+        // Drag-and-drop functionality
+        uploadContainer.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadContainer.classList.add('dragover');
+        });
+
+        uploadContainer.addEventListener('dragleave', () => {
+            uploadContainer.classList.remove('dragover');
+        });
+
+        uploadContainer.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadContainer.classList.remove('dragover');
+
+            const file = e.dataTransfer.files[0];
+            if (file) {
+                fileInput.files = e.dataTransfer.files;  // Set file input with the dropped file
+                showImagePreview(file);
+            }
+        });
+
+        function showImagePreview(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block'; 
+            };
+            reader.readAsDataURL(file);
+        }
+
+        const image = document.getElementById('zoomable-image');
+        image.addEventListener('click', function() {
+            if (image.classList.contains('zoomed')) {
+                image.classList.remove('zoomed');
+            } else {
+                image.classList.add('zoomed');
+            }
+        });
+    </script>
+</body>
+</html>

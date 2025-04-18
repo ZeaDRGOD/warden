@@ -1,0 +1,45 @@
+#register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-login {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+}
+.form-toggle {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+.form-toggle button {
+    flex: 1;
+    padding: 0.5rem;
+    font-weight: bold;
+    color: #4a5568;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.form-toggle button.active {
+    color: #2b6cb0;
+    border-bottom: 2px solid #2b6cb0;
+}
+.error {
+    color: #e53e3e;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none;
+}
+.success {
+    color: #38a169;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none;
+}

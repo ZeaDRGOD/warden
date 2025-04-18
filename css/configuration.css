@@ -1,0 +1,426 @@
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#hr {
+    background-color: #b8b8b8;
+    width: 100%;
+    height: 1px;
+}
+
+p {
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.productcart {
+    display: flex;
+    background-color: #43707C;
+    justify-content: center;
+    font-weight: 500;
+    padding: 5px;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-gp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 0px;
+    background-color: #43707C;
+    margin: 25px;
+    padding: 25px;
+    border-radius: 8px;
+}
+
+.form-gp input {
+    font-size: 16px;
+    padding: 20px;
+    margin: 15px;
+    align-items: center;
+}
+
+.form-gp p, .form-gp h3, .form-gp h2, .form-gp h4, .form-gp h5 {
+    margin: 0;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10px;
+}
+
+.form-gp h3 {
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+.form-gp h2 {
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-gp h4 {
+    font-size: 15px;
+}
+
+.form-gp h5 {
+    font-size: 12px;
+}
+
+.configuration {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+.configuration input {
+    margin: 0px;
+}
+
+.dedicated {
+    display: flex;
+    gap: 10px;
+    margin: 5px;
+}
+
+/* Cart Summary */
+
+.cart-summary {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+    background-color: #353a40;
+    margin: 25px;
+    padding: 20px;
+    border-radius: 8px;
+    height: 50%;
+    width: 25%;
+    position: sticky;
+    top: 25px;
+}
+
+.cart-summary #total {
+    font-size: 10px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.cart-summary #total p {
+    margin: 0;
+    color: #b8b8b8;
+}
+
+.cart-summary #total h2 {
+    font-size: 20px;
+}
+
+.cart-summary h3 {
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: underline;
+    margin: 0;
+}
+
+#cart-details {
+    width: 100%;
+}
+
+#cart-details p {
+    margin: 5px;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#addons-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#addons-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+#addons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    background-color: #242424;
+    padding: 15px;
+    border-radius: 5px;
+    width: 300px;
+    height: 250px;
+}
+
+/* Model */
+
+#myModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #242424;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#total-price {
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 20px;
+    border-bottom: solid 1px white;
+}
+
+.modal-content img {
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px #000000;
+}
+
+.image-container {
+    text-align: center;
+    margin-top: 20px;
+    max-width: 20%;
+    max-height: 20%;
+}
+
+#zoomable-image {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    max-width: 80%;
+}
+
+.zoomed {
+    transform: scale(2);
+}
+
+.modal-content p, .modal-content h2, .modal-content a {
+    margin: 0;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.modal-content p {
+    font-size: 14px;
+    text-align: center;
+    margin: 5px;
+}
+
+.upload-container {
+    width: 300px;
+    height: 100px;
+    border: 2px dashed #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.upload-container input[type="file"] {
+    display: none;
+}
+
+.upload-container p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.upload-container button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* Button Style */
+
+#button-continue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#continue, #submit {
+    background-color: #5e68e6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 40px;
+    font-size: large;
+    cursor: pointer;
+}
+
+/* Input Style */
+
+input[type=text], input[type=email], input[type=password] {
+	appearance: none;
+	border: none;
+	outline: none;
+    background-color: #242424;
+	border-radius: .3em;
+	padding: 0.7em;
+	color: #ffffff;
+}
+
+input[type=checkbox] {
+	appearance: none;
+  background-color: #fff;
+  margin: 0;
+	font: inherit;
+  color: currentColor;
+  padding: 10px;
+  width: .15em;
+  height: .15em;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+	display: grid;
+  place-content: center;
+	&::before {
+		content: "";
+		width: 0.65em;
+		height: 0.65em;
+		transform: scale(0);
+		transition: 120ms transform ease-in-out;
+		box-shadow: inset 1em 1em #7d1ee9;
+		background-color: CanvasText;
+		clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+		transform-origin: left top;
+	}
+	&:checked::before {
+		transform: scale(1);
+	}
+}
+
+.configuration select {
+    border: none;
+    outline: none;
+    background-color: #242424;
+    border-radius:.3em;
+    padding: 0.7em;
+    color: #ffffff;
+    appearance: none;
+    font-size: 14px;
+}
+
+@media only screen and (max-width: 768px) {
+    /* Flex layouts - Stack elements vertically on mobile */
+    .container {
+        flex-direction: column;
+        padding: 0 10px;
+    }
+    
+    .form-gp {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    /* Reduce the size of text and padding for mobile */
+    .form-gp input {
+        font-size: 14px;
+        padding: 15px;
+        margin: 10px;
+    }
+
+    .form-gp h2, .form-gp h3 {
+        font-size: 18px;
+    }
+
+    .form-gp h4 {
+        font-size: 14px;
+    }
+
+    .form-gp h5 {
+        font-size: 12px;
+    }
+
+    /* Cart Summary - Full width on mobile */
+    .cart-summary {
+        width: 90%;
+        margin: 10px auto;
+        padding: 15px;
+    }
+
+    /* Reduce font size in the cart summary */
+    .cart-summary #total h2 {
+        font-size: 16px;
+    }
+
+    #cart-details p {
+        font-size: 12px;
+    }
+
+    /* Add-ons list - Stack elements */
+    #addons-list {
+        flex-direction: column;
+    }
+
+    #addons {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Modal content adjustments */
+    .modal-content {
+        padding: 20px;
+    }
+
+    #zoomable-image {
+        max-width: 100%;
+    }
+
+    .upload-container {
+        width: 100%;
+        height: auto;
+    }
+}

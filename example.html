@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:title" content="Warden Hosting | Home" />
+    <meta property="og:description" content="The Best New Clouds Server Hosting!" />
+    <meta property="og:image" content="../img/logo.png" />
+    <meta property="og:url" content="https://www.wardenhost.site/" />
+    <meta property="og:type" content="website" />
+
+    <title>Warden Hosting | Home</title>
+    <link rel="icon" type="image/x-icon" href="../img/logo.png">
+    <link rel="stylesheet" href="../css/index.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <nav class="fixed top-0 left-0 w-full bg-gray-800/90 backdrop-blur-md z-50 shadow-lg transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between flex-wrap">
+            <!-- Logo (Left) -->
+            <div class="order-1">
+                <a href="../#">
+                    <img 
+                        src="../img/logo.png"
+                        alt="WardenHosting Logo"
+                        class="h-12 md:h-16 object-contain filter drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+                    >
+                </a>
+            </div>
+
+            <!-- Hamburger Button (Centered on Mobile) -->
+            <div class="flex justify-center order-2 md:hidden">
+                <button id="menu-toggle" class="text-neon-green focus:outline-none" aria-label="Toggle menu">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+
+            <!-- Menu Links (Left) -->
+            <div id="menu" class="hidden w-full md:flex md:items-center md:w-auto order-3">
+                <div class="flex flex-col md:flex-row md:space-x-6 pt-4 md:pt-0 bg-gray-800/95 md:bg-transparent">
+                    <!-- Home -->
+                    <a style="font-weight: 600;" href="../#" class="block py-2 md:py-0 text-gray-300 hover:text-blue-400 transition-colors">Home</a>
+                    <!-- List (Dropdown) -->
+                    <div class="relative group">
+                        <button style="font-weight: 600;" class="block py-2 md:py-0 text-gray-300 hover:text-blue-400 transition-colors flex items-center">
+                            Services 
+                            <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
+                        </button>
+                        <div class="dropdown absolute left-0 w-48 bg-gray-800 rounded-md shadow-lg z-10">
+                            <a style="font-weight: 600;" href="#minecraft-budget" class="block px-4 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-700 rounded-t-md">Minecraft Budget</a>
+                            <a style="font-weight: 600;" href="#minecraft-premium" class="block px-4 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-700">Minecraft Premium</a>
+                            <a style="font-weight: 600;" href="#discord-bot" class="block px-4 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-700">DiscordBot</a>
+                            <a style="font-weight: 600;" href="#game-servers" class="block px-4 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-700 rounded-b-md">Game Servers</a>
+                        </div>
+                    </div>
+                    <!-- About Us -->
+                    <a style="font-weight: 600;" href="#about" class="block py-2 md:py-0 text-gray-300 hover:text-blue-400 transition-colors">About us</a>
+                    <!-- Status -->
+                    <a style="font-weight: 600;" href="#status" class="block py-2 md:py-0 text-gray-300 hover:text-blue-400 transition-colors">Status</a>
+                </div>
+            </div>
+
+            <!-- Right Menu (Billing, Panel, Ping) -->
+            <div class="hidden md:flex items-center space-x-6 order-4">
+                <a style="font-weight: 600;" href="../billing.html" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Billing</a>
+                <a style="font-weight: 600;" href="https://game.wardenhost.site" class="text-gray-300 hover:text-blue-400 transition-colors">Panel</a>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (includes all items) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800/95 w-full px-4 pt-4 pb-6">
+            <a style="font-weight: 600;" href="../#" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Home</a>
+            <div class="relative">
+                <button style="font-weight: 600;" id="dropdown-toggle" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors flex items-center">
+                    List
+                    <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
+                </button>
+                <div id="mobile-dropdown" class="hidden pl-4">
+                    <a style="font-weight: 600;" href="#minecraft-budget" class="block py-2 text-gray-300 hover:text-blue-400">Minecraft Budget</a>
+                    <a style="font-weight: 600;" href="#minecraft-premium" class="block py-2 text-gray-300 hover:text-blue-400">Minecraft Premium</a>
+                    <a style="font-weight: 600;" href="#discord-bot" class="block py-2 text-gray-300 hover:text-blue-400">DiscordBot</a>
+                    <a style="font-weight: 600;" href="#game-servers" class="block py-2 text-gray-300 hover:text-blue-400">Game Servers</a>
+                </div>
+            </div>
+            <a style="font-weight: 600;" href="#about" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">About us</a>
+            <a style="font-weight: 600;" href="#status" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Status</a>
+            <a style="font-weight: 600;" href="../billing.html" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Billing</a>
+            <a style="font-weight: 600;" href="https://game.wardenhost.site" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Panel</a>
+        </div>
+    </nav>
+
+    <br><br><br>
+    <br><br><br>
+    <br><br><br>
+
+    <footer style="background-color: #1a1a1a; color: #ffffff; padding: 40px 20px; font-family: sans-serif; text-align: center;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
+                <!-- Company Info -->
+                <div style="flex: 1; min-width: 200px;">
+                    <h3 style="font-size: 18px; margin-bottom: 15px;">WardenHosting</h3>
+                    <p style="font-size: 14px; line-height: 1.6;">
+                        Secure and reliable web hosting solutions for businesses of all sizes. 
+                        Uptime guaranteed, 24/7 support.
+                    </p>
+                </div>
+    
+                <!-- Quick Links -->
+                <div style="flex: 1; min-width: 150px;">
+                    <h3 style="font-size: 18px; margin-bottom: 15px;">Quick Links</h3>
+                    <ul style="list-style: none; padding: 0; font-size: 14px;">
+                        <li><a href="/about" style="color: #cccccc; text-decoration: none;">About Us</a></li>
+                        <li><a href="/services" style="color: #cccccc; text-decoration: none;">Services</a></li>
+                        <li><a href="../#cate" style="color: #cccccc; text-decoration: none;">Pricing</a></li>
+                        <li><a href="/contact" style="color: #cccccc; text-decoration: none;">Contact</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Contact Info -->
+                <div style="flex: 1; min-width: 200px;">
+                    <h3 style="font-size: 18px; margin-bottom: 15px;">Contact Us</h3>
+                    <p style="font-size: 14px; line-height: 1.6;">
+                        Email: thyreahx@gmail.com<br>
+                        Phone: +855 93 237 359<br>
+                        Address: Phnom Penh City
+                    </p>
+                </div>
+    
+                <!-- Social Media -->
+                <div style="flex: 1; min-width: 150px;">
+                    <h3 style="font-size: 18px; margin-bottom: 15px;">Follow Us</h3>
+                    <div style="display: flex; gap: 15px; justify-content: center;">
+                        <a href="https://discord.gg/z6K9PQFN9N" style="color: #cccccc; text-decoration: none;">
+                            <i class="fa-brands fa-discord" style="font-size: 20px;"></i>
+                        </a>
+                        <a href="#soon" style="color: #cccccc; text-decoration: none;">
+                            <i class="fa-brands fa-youtube" style="font-size: 20px;"></i>
+                        </a>
+                        <a href="#soon" style="color: #cccccc; text-decoration: none;">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Bottom Bar -->
+            <div style="border-top: 1px solid #333; margin-top: 30px; padding-top: 20px; font-size: 14px;">
+                <p>© 2025 WardenHosting. All rights reserved. 
+                    <a href="/privacy" style="color: #cccccc; text-decoration: none;">Privacy Policy</a> | 
+                    <a href="/terms" style="color: #cccccc; text-decoration: none;">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/9fbc0d899d.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/index.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>
