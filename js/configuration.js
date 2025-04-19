@@ -1,6 +1,12 @@
 document.getElementById('productcart').addEventListener('input', updateCartSummary);
 
+// Coupon array: [code, discountPercentage]
+const coupons = [
+    ["WARDEN-4583", 35]
+];
+
 let totalPrice = 0;
+let appliedCoupon = null;
 
 function updateCartSummary() {
     const nodeType = document.getElementById('nodetype').value;
@@ -33,15 +39,50 @@ function updateCartSummary() {
         totalPrice += 5.00;
     }
 
+    // Apply coupon discount if a valid coupon is applied
+    let discount = 0;
+    if (appliedCoupon) {
+        const coupon = coupons.find(c => c[0] === appliedCoupon);
+        if (coupon) {
+            discount = totalPrice * (coupon[1] / 100);
+        }
+    }
+    const finalPrice = totalPrice - discount;
+
     document.getElementById('summary-nodetype').innerText = "Node: " + nodeType;
     document.getElementById('summary-servertype').innerText = "Plan: " + serverType;
     document.getElementById('summary-dedicatedip').innerText = dedicatedIp;
     document.getElementById('summary-proxysetup').innerText = proxySetupPrice;
     document.getElementById('summary-geysersetup').innerText = geyserSetupPrice;
-    document.getElementById('summary-total').innerText = `$ ${totalPrice.toFixed(2)} USD`;
-    document.getElementById('total-price').innerText = `$ ${totalPrice.toFixed(2)} USD`;
+    document.getElementById('summary-coupon').innerText = appliedCoupon ? `Coupon (${appliedCoupon}): -$${discount.toFixed(2)} USD` : "";
+    document.getElementById('summary-total').innerText = `$ ${finalPrice.toFixed(2)} USD`;
+    document.getElementById('total-price').innerText = `$ ${finalPrice.toFixed(2)} USD`;
 }
 
+// Coupon application function
+function applyCoupon() {
+    const couponCode = document.getElementById('coupon-input').value.trim().toUpperCase();
+    const coupon = coupons.find(c => c[0] === couponCode);
+
+    if (coupon) {
+        appliedCoupon = couponCode;
+        Swal.fire({
+            title: 'Success',
+            text: `Coupon ${couponCode} applied! ${coupon[1]}% off.`,
+            icon: 'success'
+        });
+    } else {
+        appliedCoupon = null;
+        Swal.fire({
+            title: 'Error',
+            text: 'Invalid coupon code.',
+            icon: 'error'
+        });
+    }
+    updateCartSummary();
+}
+
+// Rest of your existing code remains unchanged
 document.getElementById('nodetype').addEventListener('change', function() {
     const nodeType = this.value;
     const planSelect = document.getElementById('plan');
@@ -53,26 +94,27 @@ document.getElementById('nodetype').addEventListener('change', function() {
     let options = [];
 
     if (nodeType === 'Budget') {
-        options = [
-            { value: '2GB $2.49 USD', text: '[Budget] 2GB $2.49 USD' },
-            { value: '4GB $4.99 USD', text: '[Budget] 4GB $4.99 USD' },
-            { value: '6GB $7.49 USD', text: '[Budget] 6GB $7.49 USD' },
-            { value: '8GB $9.99 USD', text: '[Budget] 8GB $9.99 USD' },
-            { value: '12GB $14.99 USD', text: '[Budget] 12GB $14.99 USD' },
-            { value: '16GB $19.99 USD', text: '[Budget] 16GB $19.99 USD' },
-            { value: '20GB $24.99 USD', text: '[Budget] 20GB $24.99 USD' },
-            { value: '24GB $29.99 USD', text: '[Budget] 24GB $29.99 USD' },
-        ];
+        options = [];
+        for (let gb = 1; gb <= 32; gb++) {
+            const price = (gb * 1.25).toFixed(2);
+            options.push({
+                value: `${gb}GB $${price} USD`,
+                text: `[Budget] ${gb}GB $${price} USD`
+            });
+        }
         selectNode.disabled = true;
     } else if (nodeType === 'Premium') {
-        options = [
-            { value: '8GB $24.00 USD', text: '[Premium] 8GB $24.00 USD' },
-            { value: '16GB $48.00 USD', text: '[Premium] 16GB $48.00 USD' },
-            { value: '24GB $72.00 USD', text: '[Premium] 24GB $72.00 USD' },
-            { value: '32GB $96.00 USD', text: '[Premium] 32GB $96.00 USD' },
-        ];
+        options = [];
+        for (let gb = 8; gb <= 24; gb++) {
+            const price = (gb * 2.49).toFixed(2);
+            options.push({
+                value: `${gb}GB $${price} USD`,
+                text: `[Premium] ${gb}GB $${price} USD`
+            });
+        }
         selectNode.disabled = true;
     } else {
+        options = [];
         selectNode.disabled = false;
     }
 
@@ -147,7 +189,6 @@ document.getElementById('dedicatedip').addEventListener('change', function() {
 });
 
 function payments() {
-            
     const email = document.getElementById('email');
     const password = document.getElementById('password');
     const servername = document.getElementById('servername');
@@ -225,7 +266,6 @@ function payments() {
 }
 
 document.getElementById('productcart').addEventListener('submit', function(event) {
-
     const imageCheck = document.getElementById('image').files[0];
     if (!imageCheck) {
         Swal.fire({
@@ -284,7 +324,11 @@ document.getElementById('productcart').addEventListener('submit', function(event
         } else {
             const submitButton = document.getElementById('submit');
             submitButton.disabled = true;
-            alert('You can only submit 10 times in a day.');
+            Swal.fire({
+                title: 'Error',
+                text: 'You can only submit 10 times in a day.',
+                icon: 'error'
+            })
             submitButton.value = 'Try again later!';
             return false;
         }
@@ -329,6 +373,9 @@ document.getElementById('productcart').addEventListener('submit', function(event
     formData.append('gametype', document.getElementById('gametype').value);
     formData.append('software', document.getElementById('software').value);
     formData.append('image', document.getElementById('image').files[0]);
+    if (appliedCoupon) {
+        formData.append('coupon', appliedCoupon);
+    }
 
     const DedicatedIp = document.getElementById('dedicatedip').checked ? "Dedicated IP: $4.00 USD" : "";
     const ProxySetup = document.getElementById('proxy').checked ? "Proxy Setup (Addons) $10.00 USD" : "";
@@ -344,6 +391,9 @@ document.getElementById('productcart').addEventListener('submit', function(event
     localStorage.setItem('Proxysetup', ProxySetup);
     localStorage.setItem('Geysersetup', GeyserSetup);
     localStorage.setItem('TotalPrice', totalPrice);
+    if (appliedCoupon) {
+        localStorage.setItem('Coupon', appliedCoupon);
+    }
 
     const webhookURL = 'https://discord.com/api/webhooks/1362866859250290940/nJPvKOpDbH0OhFYLFa3GDQk_xvLTgHF8PHzMpmqP0yPwhRbFpAwtoYeTlRknkHqMUZw7';
 
@@ -384,8 +434,9 @@ document.getElementById('productcart').addEventListener('submit', function(event
                             '🚀 Software: **' + formData.get('software') + '**\n' +
                             '🌌 Dedicated IP: **' + dedicatedIpStatus + '**\n\n' +
                             '⭐ Proxy Setup: **' + ProxySetupStatus + '**\n' +
-                            '⭐ Geyser Setup: **' + GeyserSetupStatus + '**\n\n' +
-                            '🧩 **Price**: $' + totalPrice + ' USD' + '\n' +
+                            '⭐ Geyser Setup: **' + GeyserSetupStatus + '**\n' +
+                            (appliedCoupon ? '🎟️ Coupon: **' + appliedCoupon + '**\n\n' : '\n\n') +
+                            '🧩 **Price**: $' + (totalPrice - (coupons.find(c => c[0] === appliedCoupon)?.[1] || 0) * totalPrice / 100).toFixed(2) + ' USD' + '\n' +
                             '⏲ **Buy Data**: ' + BuyDate + '\n',
                 color: 16777215,
                 image: {
@@ -406,9 +457,21 @@ document.getElementById('productcart').addEventListener('submit', function(event
         })
         .then(response => {
             if (response.ok) {
-                location.href = './success';
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Submitted Successfully',
+                    text: 'Please wait for the results; we will contact you via Telegram or Discord!',
+                    showConfirmButton: false,
+                    timer: 3000,
+                }).then(() => {
+                    location.reload();
+                });
             } else {
-                location.href = '/error';
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Something when wrong!',
+                    icon: 'error'
+                })
             }
         })
         .catch(error => {

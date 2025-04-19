@@ -94,7 +94,7 @@
                     <br>
                     <div class="configuration">
                         <h4>Server Name *</h4>
-                        <input type="text" id="servername" name="servername" maxlength="12">
+                        <input type="text" id="servername" name="servername" placeholder="Server Name" maxlength="12">
                         <br>
                         <div id="hr"></div>
                         <br>
@@ -287,14 +287,20 @@
                 <p><span id="summary-dedicatedip"></span></p>
                 <p><span id="summary-proxysetup"></span></p>
                 <p><span id="summary-geysersetup"></span></p>
+                <p><span id="summary-coupon"></span></p>
                 <br>
                 <div id="hr"></div>
             </div>
-            <br>
             <div id="total">
                 <p>CART SUBTOTAL TODAY:</p>
                 <h2><span id="summary-total">$ 0.00 USD</span></h2>
             </div>
+            <br>
+            <div id="coupon-section">
+                <input type="text" id="coupon-input" placeholder="Enter coupon code">
+                <button id="apply-coupon" onclick="applyCoupon()"><i class="fa-solid fa-ticket-simple"></i> Apply Coupon</button>
+            </div>
+            <br>
             <br><br>
             <div id="button-continue">
                 <button id="continue" onclick="payments()">
