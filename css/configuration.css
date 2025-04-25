@@ -46,6 +46,7 @@ header {
     margin: 25px;
     padding: 25px;
     border-radius: 8px;
+    max-width: 800px;
 }
 
 .form-gp input {
@@ -164,15 +165,6 @@ header {
     gap: 10px;
 }
 
-#addons-list {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
-    gap: 10px;
-  }
   
 #addons {
     display: flex;

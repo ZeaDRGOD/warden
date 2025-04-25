@@ -15,12 +15,16 @@ function updateCartSummary() {
     const dedicatedIpChecked = document.getElementById('dedicatedip').checked;
     const proxySetup = document.getElementById('proxy').checked;
     const geyserSetup = document.getElementById('geyser').checked;
+    const optimizeSetup = document.getElementById('optimize').checked;
+    const customplSetup = document.getElementById('custom-plugin').checked;
+    const acSetup = document.getElementById('anti-cheat').checked;
+    const dcsrcSetup = document.getElementById('discord-integration').checked;
 
     let planPrice = 0;
 
     if (serverType) {
-        const priceText = serverType.split('$')[1].split(' ')[0];
-        planPrice = parseFloat(priceText);
+        const priceText = serverType.split('$')[1]?.split(' ')[0];
+        planPrice = parseFloat(priceText) || 0;
     }
 
     totalPrice = planPrice;
@@ -40,6 +44,26 @@ function updateCartSummary() {
         totalPrice += 5.00;
     }
 
+    const optimizeSetupPrice = optimizeSetup ? "Optimize Setup (Addons) $10.00 USD" : "";
+    if (optimizeSetup) {
+        totalPrice += 10.00;
+    }
+
+    const customplSetupPrice = customplSetup ? "Custom Plugin Setup (Addons) $15.00 USD" : "";
+    if (customplSetup) {
+        totalPrice += 15.00;
+    }
+
+    const acSetupPrice = acSetup ? "Anti-Cheat Setup (Addons) $12.00 USD" : "";
+    if (acSetup) {
+        totalPrice += 12.00;
+    }
+
+    const dcsrcSetupPrice = dcsrcSetup ? "Discord Integration Setup (Addons) $5.00 USD" : "";
+    if (dcsrcSetup) {
+        totalPrice += 5.00;
+    }
+
     // Apply coupon discount if a valid coupon is applied
     let discount = 0;
     if (appliedCoupon) {
@@ -50,11 +74,15 @@ function updateCartSummary() {
     }
     const finalPrice = totalPrice - discount;
 
-    document.getElementById('summary-nodetype').innerText = "Node: " + nodeType;
-    document.getElementById('summary-servertype').innerText = "Plan: " + serverType;
+    document.getElementById('summary-nodetype').innerText = "Node: " + (nodeType || "None");
+    document.getElementById('summary-servertype').innerText = "Plan: " + (serverType || "None");
     document.getElementById('summary-dedicatedip').innerText = dedicatedIp;
     document.getElementById('summary-proxysetup').innerText = proxySetupPrice;
     document.getElementById('summary-geysersetup').innerText = geyserSetupPrice;
+    document.getElementById('summary-optimizesetup').innerText = optimizeSetupPrice;
+    document.getElementById('summary-customplsetup').innerText = customplSetupPrice;
+    document.getElementById('summary-acsetup').innerText = acSetupPrice;
+    document.getElementById('summary-dcsrcsetup').innerText = dcsrcSetupPrice;
     document.getElementById('summary-coupon').innerText = appliedCoupon ? `Coupon (${appliedCoupon}): -$${discount.toFixed(2)} USD` : "";
     document.getElementById('summary-total').innerText = `$ ${finalPrice.toFixed(2)} USD`;
     document.getElementById('total-price').innerText = `$ ${finalPrice.toFixed(2)} USD`;
@@ -83,7 +111,7 @@ function applyCoupon() {
     updateCartSummary();
 }
 
-// Rest of your existing code remains unchanged
+// Node type change handler
 document.getElementById('nodetype').addEventListener('change', function() {
     const nodeType = this.value;
     const planSelect = document.getElementById('plan');
@@ -95,7 +123,6 @@ document.getElementById('nodetype').addEventListener('change', function() {
     let options = [];
 
     if (nodeType === 'Budget') {
-        options = [];
         for (let gb = 1; gb <= 32; gb++) {
             const price = (gb * 1.25).toFixed(2);
             options.push({
@@ -105,7 +132,6 @@ document.getElementById('nodetype').addEventListener('change', function() {
         }
         selectNode.disabled = true;
     } else if (nodeType === 'Premium') {
-        options = [];
         for (let gb = 8; gb <= 32; gb++) {
             const price = (gb * 2.49).toFixed(2);
             options.push({
@@ -129,6 +155,7 @@ document.getElementById('nodetype').addEventListener('change', function() {
     updateCartSummary();
 });
 
+// Game type change handler
 document.getElementById('gametype').addEventListener('change', function() {
     const nodeType = this.value;
     const planSelect = document.getElementById('software');
@@ -181,84 +208,85 @@ document.getElementById('gametype').addEventListener('change', function() {
     updateCartSummary();
 });
 
-document.getElementById('plan').addEventListener('change', function() {
-    updateCartSummary();
-});
-
-document.getElementById('dedicatedip').addEventListener('change', function() {
-    updateCartSummary();
-});
+document.getElementById('plan').addEventListener('change', updateCartSummary);
+document.getElementById('dedicatedip').addEventListener('change', updateCartSummary);
+document.getElementById('proxy').addEventListener('change', updateCartSummary);
+document.getElementById('geyser').addEventListener('change', updateCartSummary);
+document.getElementById('optimize').addEventListener('change', updateCartSummary);
+document.getElementById('custom-plugin').addEventListener('change', updateCartSummary);
+document.getElementById('anti-cheat').addEventListener('change', updateCartSummary);
+document.getElementById('discord-integration').addEventListener('change', updateCartSummary);
 
 function payments() {
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
-    const servername = document.getElementById('servername');
-    const nodetype = document.getElementById('nodetype');
-    const plan = document.getElementById('plan');
-    const location = document.getElementById('location');
-    const gametype = document.getElementById('gametype');
-    const software = document.getElementById('software');
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const servername = document.getElementById('servername').value;
+    const nodetype = document.getElementById('nodetype').value;
+    const plan = document.getElementById('plan').value;
+    const location = document.getElementById('location').value;
+    const gametype = document.getElementById('gametype').value;
+    const software = document.getElementById('software').value;
 
-    if (!email.value || !password.value) {
+    if (!email || !password) {
         Swal.fire({
             title: 'Error',
             text: 'Please enter your email and password.',
             icon: 'error'
-        })
+        });
         return;
     }
 
-    if (!servername.value) {
+    if (!servername) {
         Swal.fire({
             title: 'Error',
             text: 'Please enter your server name.',
             icon: 'error'
-        })
+        });
         return;
     }
 
-    if (nodetype.value == "") {
+    if (!nodetype) {
         Swal.fire({
             title: 'Error',
             text: 'Please select your node type.',
             icon: 'error'
-        })
+        });
         return;
     }
 
-    if (plan.value == "") {
+    if (!plan) {
         Swal.fire({
             title: 'Error',
             text: 'Please select your plan.',
             icon: 'error'
-        })
+        });
         return;
     }
 
-    if (location.value == "") {
+    if (!location) {
         Swal.fire({
             title: 'Error',
             text: 'Please select your location.',
             icon: 'error'
-        })
+        });
         return;
     }
 
-    if (gametype.value == "") {
+    if (!gametype) {
         Swal.fire({
             title: 'Error',
             text: 'Please select your game type.',
             icon: 'error'
-        })
+        });
         return;
     }
 
-    if (software.value == "") {
+    if (!software) {
         Swal.fire({
             title: 'Error',
             text: 'Please select your software.',
             icon: 'error'
-        })
+        });
         return;
     }
     
@@ -267,42 +295,16 @@ function payments() {
 }
 
 document.getElementById('productcart').addEventListener('submit', function(event) {
+    event.preventDefault();
+
     const imageCheck = document.getElementById('image').files[0];
     if (!imageCheck) {
         Swal.fire({
             title: 'Error',
             text: 'Please upload receipt before submitting.',
             icon: 'error'
-        })
+        });
         return;
-    }
-
-    event.preventDefault();
-
-    function base64Encode(str) {
-        return btoa(unescape(encodeURIComponent(str)));
-    }
-
-    function base64Decode(str) {
-        return decodeURIComponent(escape(atob(str)));
-    }
-
-    function generateFakeWebhook() {
-        const fakeId = Math.random().toString().substring(2, 19);
-        const fakeApi = Array.from({ length: 71 }, () => Math.random().toString(36)[2]).join('');
-        return `https://discord.com/api/webhooks/${fakeId}/${fakeApi}`;
-    }
-
-    function obfuscateConsole(message, line) {
-        const encodedMessage = base64Encode(message);
-        const noise = generateFakeWebhook();
-        const obfuscatedMessage = `${encodedMessage}${noise}`;
-    }
-
-    function deobfuscateConsole(obfuscatedMessage) {
-        const encodedMessage = obfuscatedMessage.replace(/https:\/\/discord\.com\/api\/webhooks\/[0-9]{19}\/[a-zA-Z0-9]{69}$/, "");
-        const originalMessage = base64Decode(encodedMessage);
-        return originalMessage;
     }
 
     function checkSubmissionLimit() {
@@ -310,14 +312,14 @@ document.getElementById('productcart').addEventListener('submit', function(event
         const lastSubmissionDate = localStorage.getItem('lastSubmissionDate');
 
         if (!lastSubmissionDate || lastSubmissionDate !== currentDate) {
-            localStorage.setItem('submissionCount', 0);
+            localStorage.setItem('submissionCount', '0');
             localStorage.setItem('lastSubmissionDate', currentDate);
         }
 
-        const submissionCount = parseInt(localStorage.getItem('submissionCount')) || 0;
+        let submissionCount = parseInt(localStorage.getItem('submissionCount')) || 0;
 
-        if (submissionCount < 1) {
-            localStorage.setItem('submissionCount', submissionCount + 1);
+        if (submissionCount < 10) {
+            localStorage.setItem('submissionCount', (submissionCount + 1).toString());
             const submitButton = document.getElementById('submit');
             submitButton.disabled = true;
             submitButton.value = 'Loading...';
@@ -329,7 +331,7 @@ document.getElementById('productcart').addEventListener('submit', function(event
                 title: 'Error',
                 text: 'You can only submit 10 times in a day.',
                 icon: 'error'
-            })
+            });
             submitButton.value = 'Try again later!';
             return false;
         }
@@ -337,29 +339,6 @@ document.getElementById('productcart').addEventListener('submit', function(event
 
     if (!checkSubmissionLimit()) {
         return;
-    }
-
-    function sendFakeWebhooks(line) {
-        const fakeWebhookURL = generateFakeWebhook();
-        const fakePayload = {
-            content: "This is a fake webhook message to obfuscate the real webhook."
-        };
-
-        return fetch(fakeWebhookURL, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(fakePayload)
-        })
-        .then(response => {
-            if (response.ok) {
-                obfuscateConsole('Fake webhook sent to: ' + fakeWebhookURL, line);
-            } else {
-                throw new Error('Failed to send fake webhook');
-            }
-        })
-        .catch(error => {
-            obfuscateConsole('Error sending fake webhook: ' + error, line);
-        });
     }
 
     const BuyDate = new Date().toLocaleDateString();
@@ -373,112 +352,92 @@ document.getElementById('productcart').addEventListener('submit', function(event
     formData.append('location', document.getElementById('location').value);
     formData.append('gametype', document.getElementById('gametype').value);
     formData.append('software', document.getElementById('software').value);
-    formData.append('image', document.getElementById('image').files[0]);
+    formData.append('file', document.getElementById('image').files[0]); // Use 'file' for Discord attachment
     if (appliedCoupon) {
         formData.append('coupon', appliedCoupon);
     }
 
-    const DedicatedIp = document.getElementById('dedicatedip').checked ? "Dedicated IP: $4.00 USD" : "";
-    const ProxySetup = document.getElementById('proxy').checked ? "Proxy Setup (Addons) $10.00 USD" : "";
-    const GeyserSetup = document.getElementById('geyser').checked ? "Geyser Setup (Addons) $5.00 USD" : "";
-
     const dedicatedIpStatus = document.getElementById('dedicatedip').checked ? '✅' : '❌';
-    const ProxySetupStatus = document.getElementById('proxy').checked ? '✅' : '❌';
-    const GeyserSetupStatus = document.getElementById('geyser').checked ? '✅' : '❌';
 
     localStorage.setItem('NodeType', document.getElementById('nodetype').value);
     localStorage.setItem('Plan', document.getElementById('plan').value);
-    localStorage.setItem('DedicatedIP', DedicatedIp);
-    localStorage.setItem('Proxysetup', ProxySetup);
-    localStorage.setItem('Geysersetup', GeyserSetup);
-    localStorage.setItem('TotalPrice', totalPrice);
+    localStorage.setItem('TotalPrice', totalPrice.toString());
     if (appliedCoupon) {
         localStorage.setItem('Coupon', appliedCoupon);
     }
 
+    // Build addons section only for checked items
+    let addonsSection = '';
+    if (document.getElementById('proxy').checked) {
+        addonsSection += '- ⭐ Proxy Setup ✅\n';
+    }
+    if (document.getElementById('geyser').checked) {
+        addonsSection += '- ⭐ Geyser Setup ✅\n';
+    }
+    if (document.getElementById('optimize').checked) {
+        addonsSection += '- ⭐ Optimize Setup ✅\n';
+    }
+    if (document.getElementById('custom-plugin').checked) {
+        addonsSection += '- ⭐ Custom Plugin Setup ✅\n';
+    }
+    if (document.getElementById('anti-cheat').checked) {
+        addonsSection += '- ⭐ Anti-Cheat Setup ✅\n';
+    }
+    if (document.getElementById('discord-integration').checked) {
+        addonsSection += '- ⭐ Discord Integration Setup ✅\n';
+    }
+
     const webhookURL = 'https://discord.com/api/webhooks/1362866859250290940/nJPvKOpDbH0OhFYLFa3GDQk_xvLTgHF8PHzMpmqP0yPwhRbFpAwtoYeTlRknkHqMUZw7';
 
-    function sendImage(imageFile) {
-        const formData = new FormData();
-        formData.append('image', imageFile);
+    // Prepare the content for the webhook
+    const content = `## <a:ONLINE:1269224793106944102> New Order Submit <@1243544313418485760>\n` +
+                    `- *check merl bank bro eng merl lui jol nv nigga!*\n` +
+                    `- **ber jol hz dak server oy ke tv** *__Information below__* <:pepeStare:1152428361717665886>\n\n` +
+                    `# SUBMITE SERVER 🌾\n` +
+                    `- 💌 Email: **${formData.get('email') || 'N/A'}**\n` +
+                    `- 💟 Password: **${formData.get('password') || 'N/A'}**\n` +
+                    `- 💙 Discord: **${formData.get('dcname') || 'none'}**\n\n` +
+                    `> - 📗 Server Name: **${formData.get('servername') || 'N/A'}**\n` +
+                    `> - 👑 Plan: **${formData.get('plan') || 'N/A'}**\n` +
+                    `> - 🌐 Location: **${formData.get('location') || 'N/A'}**\n` +
+                    `> - 🟢 Game Select: **${formData.get('gametype') || 'N/A'}**\n` +
+                    `> - 🚀 Software: **${formData.get('software') || 'N/A'}**\n` +
+                    `> - 🌌 Dedicated IP: **${dedicatedIpStatus}**\n\n` +
+                    (addonsSection || '') +
+                    (appliedCoupon ? `- 🎟️ Coupon: **${appliedCoupon}**\n\n` : '\n') +
+                    `- 🧩 Price: **$${totalPrice - (coupons.find(c => c[0] === appliedCoupon)?.[1] || 0) * (totalPrice / 100).toFixed(2)} USD**\n` +
+                    `-# Buy Data: ${BuyDate}`;
 
-        return fetch(webhookURL, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('Failed to send image to Discord webhook');
-            }
-        })
-        .then(data => {
-            return data.url;
-        })
-        .catch(error => {
-            obfuscateConsole('Error: ' + error, 145);
-        });
-    }
+    // Send the webhook with both content and image in one request
+    formData.append('payload_json', JSON.stringify({ content }));
 
-    sendImage(formData.get('image'))
-        .then(function(imageUrl) {
-            const embedData = {
-                title: 'Submission Server',
-                description: '💌 **Email**: ' + formData.get('email') + '\n' +
-                            '💟**Password**: ' + formData.get('password') + '\n' +
-                            '💙 Discord: **' + formData.get('dcname') + '**\n\n' +
-                            '📗 Server Name: **' + formData.get('servername') + '**\n' +
-                            '👑 Plan: **' + formData.get('plan') + '**\n' +
-                            '🌐 Location: **' + formData.get('location') + '**\n' +
-                            '🟢 Game Select: **' + formData.get('gametype') + '**\n' +
-                            '🚀 Software: **' + formData.get('software') + '**\n' +
-                            '🌌 Dedicated IP: **' + dedicatedIpStatus + '**\n\n' +
-                            '⭐ Proxy Setup: **' + ProxySetupStatus + '**\n' +
-                            '⭐ Geyser Setup: **' + GeyserSetupStatus + '**\n' +
-                            (appliedCoupon ? '🎟️ Coupon: **' + appliedCoupon + '**\n\n' : '\n\n') +
-                            '🧩 **Price**: $' + (totalPrice - (coupons.find(c => c[0] === appliedCoupon)?.[1] || 0) * totalPrice / 100).toFixed(2) + ' USD' + '\n' +
-                            '⏲ **Buy Data**: ' + BuyDate + '\n',
-                color: 16777215,
-                image: {
-                    url: imageUrl
-                }
-            };
-
-            const payload = {
-                embeds: [embedData],
-                content: '## <a:ONLINE:1269224793106944102>  New Order Submit <@1243544313418485760> \n > - *check merl bank bro eng merl lui jol nv nigga!* \n > - **ber jol hz dak server oy ke tv** *__Information below__* <:pepeStare:1152428361717665886>' 
-            };
-
-            return fetch(webhookURL, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(payload)
+    fetch(webhookURL, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (response.ok) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Submitted Successfully',
+                text: 'Please wait for the results; we will contact you via Telegram or Discord!',
+                showConfirmButton: false,
+                timer: 3000
+            }).then(() => {
+                location.reload();
             });
-        })
-        .then(response => {
-            if (response.ok) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Submitted Successfully',
-                    text: 'Please wait for the results; we will contact you via Telegram or Discord!',
-                    showConfirmButton: false,
-                    timer: 3000,
-                }).then(() => {
-                    location.reload();
-                });
-            } else {
-                Swal.fire({
-                    title: 'Error',
-                    text: 'Something when wrong!',
-                    icon: 'error'
-                })
-            }
-        })
-        .catch(error => {
-            obfuscateConsole('Error: ' + error, 145);
+        } else {
+            throw new Error('Failed to send webhook');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        Swal.fire({
+            title: 'Error',
+            text: 'Something went wrong!',
+            icon: 'error'
         });
-    for (let i = 0; i < 100; i++) {
-        sendFakeWebhooks(Math.floor(Math.random() * 200) + 1);
-    }
+        document.getElementById('submit').disabled = false;
+        document.getElementById('submit').value = 'Submit';
+    });
 });
