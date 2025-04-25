@@ -105,7 +105,7 @@ document.getElementById('nodetype').addEventListener('change', function() {
         selectNode.disabled = true;
     } else if (nodeType === 'Premium') {
         options = [];
-        for (let gb = 8; gb <= 24; gb++) {
+        for (let gb = 8; gb <= 32; gb++) {
             const price = (gb * 2.49).toFixed(2);
             options.push({
                 value: `${gb}GB $${price} USD`,
@@ -315,7 +315,7 @@ document.getElementById('productcart').addEventListener('submit', function(event
 
         const submissionCount = parseInt(localStorage.getItem('submissionCount')) || 0;
 
-        if (submissionCount < 10000) {
+        if (submissionCount < 1) {
             localStorage.setItem('submissionCount', submissionCount + 1);
             const submitButton = document.getElementById('submit');
             submitButton.disabled = true;
