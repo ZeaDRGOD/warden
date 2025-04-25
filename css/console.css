@@ -1,0 +1,52 @@
+#console {
+    width: 60%;
+    min-height: 400px;
+    background-color: #1f2937;
+    border-radius: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    transform: translate(35%);
+}
+#console-output {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+.input-line {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    position: sticky;
+    bottom: 0;
+    background-color: #1f2937;
+}
+.prompt {
+    color: #ffffff;
+    margin-right: 5px;
+}
+#input {
+    background: none;
+    border: none;
+    color: #d4d4d4;
+    font-family: sans-serif;
+    outline: none;
+    flex-grow: 1;
+}
+.log-timestamp {
+    color: #ffdc42;
+}
+.log-level-info {
+    color: #4ec9b0;
+}
+.log-level-done {
+    color: #4ec9b0;
+}
+.color-white { color: #FFFFFF; }
+.color-green { color: #00FF00; }

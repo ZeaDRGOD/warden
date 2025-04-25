@@ -13,6 +13,7 @@
     <title>Warden Hosting | Home</title>
     <link rel="icon" type="image/x-icon" href="../img/logo.png">
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/console.css">
     <link rel="stylesheet" href="css/loading.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -200,6 +201,15 @@
     </div>
 
     <br><br><br>
+
+    <div id="console">
+        <div id="console-output"></div>
+        <div class="input-line">
+            <span class="prompt">></span>
+            <input type="text" id="input" autofocus>
+        </div>
+    </div>
+
     <br><br><br>
 
     <div class="ping-selection">
@@ -288,6 +298,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="../js/index.js"></script>
     <script src="../js/loading.js"></script>
+    <script src="../js/console.js"></script>
     <script>
         AOS.init();
 
