@@ -105,14 +105,4 @@ function handleMinecraftCommand(command) {
     }
 }
 
-input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-        const command = input.value;
-        if (command) {
-            handleCommand(command);
-            input.value = '';
-        }
-    }
-});
-
 window.onload = onStartup;
