@@ -2,7 +2,8 @@ document.getElementById('productcart').addEventListener('input', updateCartSumma
 
 // Coupon array: [code, discountPercentage]
 const coupons = [
-    ["WARDEN-SAVE15", 15]
+    ["WARDEN-SAVE15", 15],
+    ["WARDEN-4583", 35]
 ];
 
 let totalPrice = 0;
